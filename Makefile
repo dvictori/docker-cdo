@@ -1,6 +1,6 @@
 # Build
 build:
-	docker build --tag alexgleith/cdo .
+	docker build --tag daniel/cdo .
 
 shell:
-	docker run --rm -it -v /tmp:/tmp alexgleith/cdo bash
+	docker run --rm -it -v $(datadir):/data daniel/cdo bash
