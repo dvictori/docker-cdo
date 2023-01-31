@@ -35,4 +35,5 @@ RUN wget https://code.mpimet.mpg.de/attachments/download/27276/cdo-2.0.6.tar.gz 
 RUN mkdir -p /data && chmod 777 /data
 WORKDIR /data
 
-CMD cdo --version
+ENTRYPOINT [ "cdo" ]
+CMD [ "--version" ]
