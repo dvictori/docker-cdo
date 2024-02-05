@@ -19,14 +19,15 @@ RUN apt-get update && apt-get install -y wget g++ make \
 
 # Set up the components needed for format support for cdo
 RUN apt-get update && apt-get install -y \
-    nco netcdf-bin libhdf5-serial-dev zlib1g-dev libnetcdf-dev libproj22 libproj-dev libudunits2-dev\
+    nco netcdf-bin libhdf5-serial-dev zlib1g-dev libnetcdf-dev libproj22 libproj-dev libudunits2-dev python3\
     && rm -rf /var/lib/apt/lists/*
 
 # Install cdo from source, so that we get other format support
 WORKDIR /tmp
-RUN wget https://code.mpimet.mpg.de/attachments/download/27276/cdo-2.0.6.tar.gz -O /tmp/cdo-2.0.6.tar.gz \
-    && tar -xzvf cdo-2.0.6.tar.gz \
-    && cd /tmp/cdo-2.0.6 \
+
+RUN wget https://code.mpimet.mpg.de/attachments/download/29019/cdo-2.3.0.tar.gz -O /tmp/cdo-2.3.0.tar.gz \
+    && tar -xzvf cdo-2.3.0.tar.gz \
+    && cd /tmp/cdo-2.3.0 \
     && ./configure --enable-netcdf4 --enable-szlib --with-netcdf=/usr/ --with-hdf5=/usr/lib/x86_64-linux-gnu/hdf5/serial/ --with-proj=/usr/ --with-szlib=/usr/ --with-udunits2=/usr/ \
     && make \
     && make install \
